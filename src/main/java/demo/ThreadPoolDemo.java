@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  * @createTime 2019/3/6 15:56
  */
 public class ThreadPoolDemo {
-    class ThreadPoolArguments{
+    class ThreadPoolArguments {
         private Integer coreSize = 1;
 
         public Integer getCoreSize() {
@@ -25,22 +25,22 @@ public class ThreadPoolDemo {
     }
 
 
-    public void createThreadPool(){
+    public void createThreadPool() {
         try {
             ThreadPoolArguments demo = new ThreadPoolArguments();
             Field field = ThreadPoolArguments.class.getDeclaredField("coreSize");
             field.setAccessible(true);
-            field.set(demo,3);
-            System.out.println("coreSize = "+demo.getCoreSize());
+            field.set(demo, 3);
+            System.out.println("coreSize = " + demo.getCoreSize());
             Method method = ThreadPoolArguments.class.getDeclaredMethod("setCoreSize", Integer.class);
             method.setAccessible(true);
-            method.invoke(demo,5);
-            System.out.println("coreSize = "+demo.getCoreSize());
+            method.invoke(demo, 5);
+            System.out.println("coreSize = " + demo.getCoreSize());
         } catch (NoSuchFieldException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
 //        ArrayBlockingQueue workQueue = new ArrayBlockingQueue<>();
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(1,1,10, TimeUnit.SECONDS,null);
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 10, TimeUnit.SECONDS, null);
 //        executor.execute(() -> );
     }
 }

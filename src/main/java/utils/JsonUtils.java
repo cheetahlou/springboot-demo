@@ -11,16 +11,16 @@ import java.util.Map;
 
 public class JsonUtils {
 
-    public static final SerializerFeature[] features = { SerializerFeature.SkipTransientField,
+    public static final SerializerFeature[] features = {SerializerFeature.SkipTransientField,
             SerializerFeature.WriteDateUseDateFormat, SerializerFeature.WriteMapNullValue,
             SerializerFeature.WriteNullListAsEmpty, SerializerFeature.WriteNullBooleanAsFalse,
-            SerializerFeature.WriteNullStringAsEmpty, SerializerFeature.WriteEnumUsingToString };
+            SerializerFeature.WriteNullStringAsEmpty, SerializerFeature.WriteEnumUsingToString};
 
     public static String toJsonString(Object object) {
-        if(object==null){
+        if (object == null) {
             return null;
         }
-        if(object instanceof String){
+        if (object instanceof String) {
             return object.toString();
         }
         return JSONObject.toJSONString(object, features);
@@ -57,7 +57,7 @@ public class JsonUtils {
 
     /**
      * 对JSON每一个KEY的VALUE文本中可能引起问题的特殊字符串做JS转义 双引号,单引号都转义
-     * 
+     *
      * @param json
      * @return
      */
