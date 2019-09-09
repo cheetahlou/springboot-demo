@@ -1,13 +1,13 @@
-package com.cheelou.springbootdemo;
+package com.cheelou.base;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootDemoApplication {
+public class BaseApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootDemoApplication.class, args);
+        SpringApplication.run(BaseApplication.class, args);
     }
 
 }
