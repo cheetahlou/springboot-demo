@@ -51,4 +51,25 @@ public class 二叉树的非递归遍历 {
         return order;
     }
 
+    中序遍历 左->中->右 先找到最左节点（中序遍历的第一个节点）,存储这条路径，因为需要根据根节点来找到右子节点，first = left?root.left.left:right
+
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> list = new ArrayList<Integer>();
+
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode cur = root;
+
+        while(cur!=null || !stack.empty()){
+            while(cur!=null){
+                stack.add(cur);
+                cur = cur.left;
+            }
+            cur = stack.pop();
+            list.add(cur.val);
+            cur = cur.right;
+        }
+
+        return list;
+    }
+
 }
