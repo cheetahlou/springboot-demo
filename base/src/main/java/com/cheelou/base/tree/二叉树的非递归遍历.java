@@ -10,20 +10,25 @@ import java.util.Stack;
  * @createTime 2019/9/9 17:04
  */
 public class 二叉树的非递归遍历 {
-
+/*
     public static void main(String[] args) {
         TreeNode t = new TreeNode(1);
+        try {
+            TreeNode tt = (TreeNode)t.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
         TreeNode t_l = new TreeNode(2);
         TreeNode t_r = new TreeNode(5);
         TreeNode t_l_l = new TreeNode(3);
         TreeNode t_l_r = new TreeNode(4);
         TreeNode t_r_r = new TreeNode(6);
-        /* TreeNode t = new TreeNode(6);
+        *//* TreeNode t = new TreeNode(6);
         TreeNode t_l = new TreeNode(3);
         TreeNode t_r = new TreeNode(5);
         TreeNode t_l_l = new TreeNode(1);
         TreeNode t_l_r = new TreeNode(2);
-        TreeNode t_r_r = new TreeNode(4);*/
+        TreeNode t_r_r = new TreeNode(4);*//*
         t.left = t_l;
         t.right = t_r;
         t_l.left = t_l_l;
@@ -33,9 +38,9 @@ public class 二叉树的非递归遍历 {
         System.out.println(order);
     }
 
-    /**
+    *//**
      * 非递归前序遍历
-     */
+     *//*
     public static List<Integer> preorderTraversal(TreeNode root){
         List<Integer> order = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<> ();
@@ -71,5 +76,17 @@ public class 二叉树的非递归遍历 {
 
         return list;
     }
+
+    public void zz(){
+        try {
+            TreeNode treeNode = (TreeNode) Class.forName("").newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }*/
 
 }
