@@ -10,8 +10,9 @@ public class LeetCodeSolution {
     public static void main(String[] args) {
         int[] nums = new int[]{1,1,1,2,2,3};
         int[] nums1 = new int[]{0,0,1,1,1,1,2,3,3};//[0,0,1,1,2,3,3]
-        removeDuplicates(nums1);
-        checkPossibility(new int[]{4,4,2,3});
+//        removeDuplicates(nums1);
+//        checkPossibility(new int[]{4,4,2,3});
+        duplicateZeros(new int[]{8,4,5,0,0,0,0,7});
     }
 
     public int removeDuplicates1(int[] nums) {
@@ -72,7 +73,33 @@ public class LeetCodeSolution {
     }
 
     //https://leetcode.com/problems/duplicate-zeros/
-    public void duplicateZeros(int[] arr) {
+    public static void duplicateZeros(int[] arr) {
+        int count = 0;
+        for (int i : arr) {
+            if (i == 0) count++;
+        }
+        for (int i = arr.length - 1; i >= 0; i--) {
+            if (count == 0) break;
+            int target = i + count; //target index
+            if (target < arr.length) {
+                arr[target] = arr[i];
+            }
+            if(arr [i] == 0){
+                count--;//decrease count
+                if (target - 1 < arr.length) arr[target - 1] = 0;
+            }
+        }
+    }
 
+    //https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+    public int findMin(int[] nums) {
+        if(nums.length == 0) return -1;
+        if(nums.length == 1) return nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if(nums[i] < nums[i- 1]){
+                return nums[i];
+            }
+        }
+        return nums[0];
     }
 }
