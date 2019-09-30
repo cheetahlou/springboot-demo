@@ -1,5 +1,9 @@
 package com.cheelou.base.xyz;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author louzf
  * @decription
@@ -12,7 +16,8 @@ public class LeetCodeSolution {
         int[] nums1 = new int[]{0,0,1,1,1,1,2,3,3};//[0,0,1,1,2,3,3]
 //        removeDuplicates(nums1);
 //        checkPossibility(new int[]{4,4,2,3});
-        duplicateZeros(new int[]{8,4,5,0,0,0,0,7});
+//        duplicateZeros(new int[]{8,4,5,0,0,0,0,7});
+        generate(5);
     }
 
     public int removeDuplicates1(int[] nums) {
@@ -102,4 +107,95 @@ public class LeetCodeSolution {
         }
         return nums[0];
     }
+
+    //binary search assume no duplicate exists in the array.
+    public int findMin_BSearch(int[] nums) {
+        if(nums.length == 0) return -1;
+        if(nums[0] <= nums[nums.length - 1]) return nums[0];
+        int left = 0,right = nums.length - 1;
+        while(left <= right){
+            int mid = left + (right - left)/2;
+            if(nums[mid+1] < nums[mid]){
+                return nums[mid+1];
+            }
+
+            if(nums[mid] < nums[mid-1]){
+                return nums[mid];
+            }
+            if(nums[left] > nums[mid]){
+                //min element is in left to mid
+                right = mid - 1;
+            }else{
+                left = mid + 1;
+            }
+        }
+        return nums[0];
+    }
+    //https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/
+    // binary search assume no duplicate exists in the array.
+    public int findMin_2_BSearch(int[] nums) {
+        if (nums.length == 0) return -1;
+        int left = 0, right = nums.length - 1;
+        while (left < right) {
+            if(nums[left] < nums[right]){
+                break;
+            }
+            int mid = left + (right - left) / 2;
+            if (nums[left] > nums[mid]) {
+                //min element is in left to mid
+                right = mid;
+            } else if(nums[left] < nums[mid]){
+                left=mid+1;
+            }else{
+                //nums[left] == nums[mid]
+                if(nums[mid] > nums[right] ){
+                    left = mid+1;
+                }
+                if(nums[mid] == nums[right]){
+                    left++;
+                    right--;
+                }
+
+            }
+        }
+        return nums[left];
+    }
+
+    // https://leetcode.com/problems/pascals-triangle/
+    public static List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (numRows > 0) result.add(Arrays.asList(1));
+        for (int i = 1; i < numRows; i++) {
+            List<Integer> list = new ArrayList<>(i + 1);
+            list.add(1);//1st and last ele = 1 in every row
+            for (int j = 1; j < i; j++) {
+                List<Integer> temp = result.get(i - 1);
+                list.add(j, temp.get(j - 1) + temp.get(j));
+            }
+            list.add(1);
+            result.add(list);
+        }
+        return result;
+    }
+
+    //https://leetcode.com/problems/pascals-triangle-ii/
+    public List<Integer> getRow(int rowIndex) {
+        List<Integer> list = new ArrayList<>(rowIndex);
+        list.add(1); // head
+        if(rowIndex > 0){
+
+        }
+        return list;
+    }
+
+    1
+    1 1
+    1 2 1
+    1 3 3 1
+    1 4 6 4 1
+    1 5 10 10 5 1
+    1 6 15 20 15 6 1
+    1 7 21 35 35 21 7 1
+
+
 }
