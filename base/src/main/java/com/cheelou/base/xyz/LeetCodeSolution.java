@@ -18,6 +18,8 @@ public class LeetCodeSolution {
 //        checkPossibility(new int[]{4,4,2,3});
 //        duplicateZeros(new int[]{8,4,5,0,0,0,0,7});
         generate(5);
+        LeetCodeSolution sl = new LeetCodeSolution();
+        sl.reverse(-2147483648);
     }
 
     public int removeDuplicates1(int[] nums) {
@@ -188,14 +190,34 @@ public class LeetCodeSolution {
         return list;
     }
 
-    1
+    //https://leetcode.com/problems/reverse-integer/solution/
+    public int reverse(int x) {
+        long value = x;
+        String xStr = String.valueOf(value);
+        if (x < 0) {
+            xStr = String.valueOf(-value);
+        }
+
+        StringBuilder sb = new StringBuilder(xStr);
+        sb.reverse();
+        xStr = sb.toString();
+        value = Long.valueOf(xStr);
+        value = x < 0 ? -value : value;
+
+        if (value > Integer.MAX_VALUE || value < Integer.MIN_VALUE) {
+            return 0;
+        }
+        return (int) value;
+    }
+
+/*    1
     1 1
     1 2 1
     1 3 3 1
     1 4 6 4 1
     1 5 10 10 5 1
     1 6 15 20 15 6 1
-    1 7 21 35 35 21 7 1
+    1 7 21 35 35 21 7 1*/
 
 
 }
