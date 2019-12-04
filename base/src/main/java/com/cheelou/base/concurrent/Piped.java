@@ -1,4 +1,4 @@
-package com.cheelou.base.threadpool;
+package com.cheelou.base.concurrent;
 
 import java.io.IOException;
 import java.io.PipedReader;

@@ -1,7 +1,5 @@
-package com.cheelou.base.threadpool;
+package com.cheelou.base.concurrent;
 import java.util.concurrent.*;
-
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author louzf

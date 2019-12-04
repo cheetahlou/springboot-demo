@@ -1,6 +1,4 @@
-package com.cheelou.base.threadpool;
-
-import java.util.concurrent.TimeUnit;
+package com.cheelou.base.concurrent;
 
 /**
  * @author louzf
