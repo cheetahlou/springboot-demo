@@ -1,10 +1,8 @@
-package com.cheelou.springbootdemo.controller;
+package com.cheelou.base.temp;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -42,5 +40,28 @@ public class ThreadPoolDemo {
 //        ArrayBlockingQueue workQueue = new ArrayBlockingQueue<>();
         ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 10, TimeUnit.SECONDS, null);
 //        executor.execute(() -> );
+    }
+
+    public static void main(String[] args) {
+        for(int i=0;i<10;i++){
+            int finalI = i;
+            Thread t = new Thread(){
+                public void run(){
+                    System.out.println(finalI+"hello"+currentThread().getName());
+                }
+            };
+
+
+            Thread h = new Thread(){
+                public void run(){
+                    System.out.println(finalI+":"+"hello h");
+                }
+            };
+            t.start();
+            h.start();
+            t.run();
+            System.out.println(" world");
+        }
+
     }
 }

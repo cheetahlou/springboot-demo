@@ -1,4 +1,4 @@
-package com.cheelou.springbootdemo.controller;
+package com.cheelou.base.temp;
 
 public interface InterfaceB extends InterfaceA{
 }

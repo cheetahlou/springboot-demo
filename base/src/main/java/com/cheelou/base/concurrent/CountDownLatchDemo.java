@@ -2,8 +2,7 @@ package com.cheelou.base.concurrent;
 import	java.util.concurrent.CountDownLatch;
 
 /**
- * @author louzf
- * @decription
+ * @decription 计数器
  * @createTime 2019/11/8 16:22
  */
 public class CountDownLatchDemo {

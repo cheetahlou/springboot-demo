@@ -1,9 +1,8 @@
-package com.cheelou.springbootdemo.controller;
+package com.cheelou.base.temp;
 
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,6 +36,7 @@ public class UserController {
         }
         System.out.println("rest of the code...");
 
+        //抛出异常没有被正确捕捉到 先执行finally中的打印语句, 后抛出异常
         try {
             int data = 25 / 0;
             System.out.println(data);
