@@ -23,10 +23,10 @@ import java.util.concurrent.*;
 public class ThreadPoolDemo {
 
     public static void main(String[] args) {
-        NewCachedThreadPoolDemo();
-        newFixedThreadPoolDemo();
+//        NewCachedThreadPoolDemo();
+//        newFixedThreadPoolDemo();
         NewScheduledThreadPoolDemo();
-        NewSingleThreadScheduledDemo();
+//        NewSingleThreadScheduledDemo();
     }
 
     public static void NewCachedThreadPoolDemo(){
@@ -41,6 +41,7 @@ public class ThreadPoolDemo {
             });
         }
     }
+
     public static void newFixedThreadPoolDemo (){
         ExecutorService newFixedThreadPool = Executors.newFixedThreadPool(3);
         for(int i = 0; i < 10; i++) {
@@ -54,7 +55,10 @@ public class ThreadPoolDemo {
             });
         }
     }
+
     public static void NewScheduledThreadPoolDemo (){
+        // 用线程池启动定时器
+        // 1.初始化一个任务调度的线程池
         ScheduledExecutorService newScheduledThreadPool = Executors.newScheduledThreadPool(3);
         for(int i = 0; i < 10; i++) {
             int temp = i;
@@ -62,12 +66,19 @@ public class ThreadPoolDemo {
 
                 @Override
                 public void run() {
-                    System.out.println("ThreadName:"+Thread.currentThread().getName()+" i:"+temp);
+                    System.out.println("ThreadName:"+Thread.currentThread().getName()+"  bombing i:"+temp);
 
                 }
             }, 3, TimeUnit.SECONDS);//定时3秒后 执行这个线程池
         }
+
+        // 2.通过schedule方法执行调用的任务， 第一个参数表示时间
+        // 指定间隔重复任务的定时方法
+        // Executors.newScheduledThreadPool(3).scheduleAtFixedRate(command,
+        // initialDelay, period, unit);
+        // Callable & Future
     }
+
     public static void NewSingleThreadScheduledDemo (){
         ExecutorService newSingleThreadExecutor = Executors.newSingleThreadExecutor();
         for (int i = 0; i < 10; i++) {
@@ -81,4 +92,7 @@ public class ThreadPoolDemo {
             });
         }
     }
+
+
+
 }

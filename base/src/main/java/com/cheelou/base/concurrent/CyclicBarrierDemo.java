@@ -1,10 +1,7 @@
 package com.cheelou.base.concurrent;
-import	java.util.concurrent.atomic.AtomicInteger;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @decription 栅栏  所有到达await()的线程在此等待 最后一个线程到达后开始执行
@@ -18,16 +15,27 @@ public class CyclicBarrierDemo {
     public static void main(String[] args) throws InterruptedException {
         ExecutorService service = Executors.newCachedThreadPool();
         CountDownLatch latch = new CountDownLatch(3);
-//        CyclicBarrier barrier = new CyclicBarrier(3);
+        CyclicBarrier barrier = new CyclicBarrier(3);
         for (int i = 0; i < 3; i++) {
+            int finalI = i;
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
-                    for (int j = 0; j < 1000; j++) {
-                        sum++;
-                        count.incrementAndGet();
+                    try {
+                        Thread.sleep(finalI *200);
+                        System.out.println(System.currentTimeMillis());
+                        barrier.await();
+                        System.out.println("线程 "+Thread.currentThread().getName()+"开始执行···");
+                        for (int j = 0; j < 10000; j++) {
+                            sum++;
+                            count.incrementAndGet();
+                        }
+                        latch.countDown();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (BrokenBarrierException e) {
+                        e.printStackTrace();
                     }
-                    latch.countDown();
                 }
             };
             service.execute(r);
